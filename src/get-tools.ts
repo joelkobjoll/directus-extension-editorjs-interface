@@ -17,6 +17,7 @@ import StrikethroughTool from '@itech-indrustries/editorjs-strikethrough';
 import AlignmentTuneTool from 'editorjs-text-alignment-blocktune';
 import NestedListTool from '@editorjs/nested-list';
 import ListTool from 'editorjs-list';
+import ColumnsTool from '@calumk/editorjs-columns';
 import ImageTool from './custom-plugins/plugin-image-patch.js';
 import AttachesTool from './custom-plugins/plugin-attaches-patch.js';
 import PersonalityTool from './custom-plugins/plugin-personality-patch.js';
@@ -28,6 +29,13 @@ export type UploaderConfig = {
 	setCurrentPreview?: (url: string) => void;
 	getUploadFieldElement: () => any;
 	t: Record<string, string>;
+};
+
+const columnsTools = {
+	header: HeaderTool,
+	alert: AlertTool,
+	paragraph: ParagraphTool,
+	delimiter: DelimiterTool,
 };
 
 export default function getTools(
@@ -130,6 +138,12 @@ export default function getTools(
 		},
 		alignmentTune: {
 			class: AlignmentTuneTool,
+		},
+		columns: {
+			class: ColumnsTool,
+			config: {
+				tools: columnsTools,
+			},
 		},
 	};
 
